@@ -52,7 +52,7 @@ function App() {
   }
 
   return (
-    <Box sx={{ bgcolor: '#eeeeee' }}>
+    <Box sx={{ bgcolor: '#eeeeee', minHeight: '100vh' }}>
       <CssBaseline />
       <NavBar openForm={handleOpenFrom} />
       <Container maxWidth='xl' sx={{ mt: 3 }}>
