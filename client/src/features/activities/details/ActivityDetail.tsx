@@ -6,7 +6,7 @@ import { useActivities } from "../../../lib/hooks/useActivities";
 export default function ActivityDetail() {
     const navigate = useNavigate();
     const {id} = useParams();
-    const {activity, isLoadingActivity} = useActivities(id || "");
+    const {activity, isLoadingActivity} = useActivities(id);
 
     if (isLoadingActivity) return <Typography>Loading...</Typography>
 
@@ -24,7 +24,7 @@ export default function ActivityDetail() {
                 <Typography variant="body1" >{activity.description}</Typography>
             </CardContent>
             <CardActions>
-                <Button component={Link} to={`/activities/${activity.id}`} color="primary">Edit</Button>
+                <Button component={Link} to={`/manage/${activity.id}`} color="primary">Edit</Button>
                 <Button onClick={() => navigate('/activities')} color="inherit">Cancel</Button>
             </CardActions>
         </Card>
