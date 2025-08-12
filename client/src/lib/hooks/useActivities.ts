@@ -14,8 +14,15 @@ export const useActivities = (id?: string) => {
     const { data: activity, isLoading: isLoadingActivity } = useQuery({
         queryKey: ['activities', id],
         queryFn: async () => {
-            const response = await agent.get<Activity>(`/activities/${id}`)
-            return response.data;
+            // the code below has been changed from the class.  Before the changes, an error was returned.
+            let response;
+            if(id !== undefined) {
+                response = await agent.get<Activity>(`/activities/${id}`)
+                return response.data;
+            }
+            else {
+                return null;
+            }
         }
     })
 
