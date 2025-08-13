@@ -24,7 +24,7 @@ agent.interceptors.response.use(async response => {
         console.log(error);
         return Promise.reject(error)
     } finally {
-        store.uiStore.isBusy();
+        store.uiStore.isIdle();
     }
 })
 
