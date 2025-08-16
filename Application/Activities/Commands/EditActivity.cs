@@ -26,11 +26,9 @@ public class EditActivity
 
             mapper.Map(request.Activity, activity);
 
-            await context.SaveChangesAsync(cancellationToken);
-
             var result = await context.SaveChangesAsync(cancellationToken) > 0;
 
-            if (!result) return Result<Unit>.Failure("Failed to update the activity", 404);
+            if (!result) return Result<Unit>.Failure("Failed to update the activity", 400);
 
             return Result<Unit>.Success(Unit.Value);
         }
