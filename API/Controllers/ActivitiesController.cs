@@ -32,9 +32,9 @@ public class ActivitiesController : BaseApiController
     }
 
     [HttpPut]
-    public async Task<ActionResult<Unit>> EditActivity(Activity activity)
+    public async Task<ActionResult<Unit>> EditActivity(EditActivityDto activity)
     {
-        return HandleResult(await Mediator.Send(new EditActivity.Command { Activity = activity }));
+        return HandleResult(await Mediator.Send(new EditActivity.Command { ActivityDto = activity }));
     }
 
     [HttpDelete("{id}")]
