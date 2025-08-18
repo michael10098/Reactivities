@@ -50,6 +50,7 @@ agent.interceptors.response.use(
                 router.navigate('/not-found');
                 break;
             case 500:
+                router.navigate('/server-error', {state: {error: data}})
                 toast.error("Server error");
                 break;
             default:
