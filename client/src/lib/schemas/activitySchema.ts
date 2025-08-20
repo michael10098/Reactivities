@@ -8,7 +8,7 @@ export const activitySchema = z.object({
     title: requiredString('Title'),
     description: requiredString('Description'),
     category: requiredString('Category'),
-    date: z.coerce.date ({
+    date: z.coerce.date<Date> ({
         message: 'Date is required'
     }),
     city: requiredString('City'),
