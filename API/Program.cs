@@ -6,6 +6,8 @@ using AutoMapper;
 using Application.Activities.Validators;
 using FluentValidation;
 using API.Middleware;
+using Domain;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,12 @@ builder.Services.AddMediatR(x =>
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddValidatorsFromAssemblyContaining<CreateActivityValidator>();
 builder.Services.AddTransient<ExceptionMiddleware>();
+builder.Services.AddIdentityApiEndpoints<User>(opt =>
+{
+    opt.User.RequireUniqueEmail = true;
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 
@@ -32,7 +40,11 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(x => x.AllowAnyHeader()
     .AllowAnyMethod()
     .WithOrigins("http://localhost:3000", "https://localhost:3000"));
-    
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapGroup("api").MapIdentityApi<User>();
+
 app.MapControllers();
 
 using var scope = app.Services.CreateScope();
