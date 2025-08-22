@@ -1,5 +1,5 @@
 using System;
-using Application.Activities.DTO;
+using Application.Activities.DTOs;
 using Application.Core;
 using AutoMapper;
 using Domain;

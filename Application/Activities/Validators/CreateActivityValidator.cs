@@ -1,6 +1,6 @@
 using System;
 using Application.Activities.Commands;
-using Application.Activities.DTO;
+using Application.Activities.DTOs;
 using FluentValidation;
 using FluentValidation.Validators;
 

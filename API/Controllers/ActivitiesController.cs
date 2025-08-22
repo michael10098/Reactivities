@@ -1,7 +1,7 @@
 using System;
 using Application;
 using Application.Activities.Commands;
-using Application.Activities.DTO;
+using Application.Activities.DTOs;
 using Application.Activities.Queries;
 using Domain;
 using MediatR;
@@ -21,7 +21,7 @@ public class ActivitiesController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Activity>> GetActivityDetail(string id)
+    public async Task<ActionResult<ActivityDto>> GetActivityDetail(string id)
     {
         return HandleResult(await Mediator.Send(new GetActivityDetails.Query { Id = id }));
     }
