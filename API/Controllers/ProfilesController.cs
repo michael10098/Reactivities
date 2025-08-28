@@ -2,6 +2,7 @@ using System;
 using Application.Profiles.Commands;
 using Application.Profiles.Queries;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -18,5 +19,11 @@ public class ProfilesController : BaseApiController
     public async Task<ActionResult<List<Photo>>> GetPhotoForUser(string userId)
     {
         return HandleResult(await Mediator.Send(new GetProfilePhotos.Query { UserId = userId }));
+    }
+
+    [HttpDelete("{photoId}/photos")]
+    public async Task<ActionResult<Unit>> DeletePhoto(string photoId)
+    {
+        return HandleResult(await Mediator.Send(new DeletePhoto.Command { PhotoId = photoId }));
     }
 }
