@@ -11,4 +11,5 @@ public class User : IdentityUser
 
     // mav properties
     public ICollection<ActivityAttendee> Activities { get; set; } = [];
+    public ICollection<Photo> Photos { get; set; } = [];
 }
