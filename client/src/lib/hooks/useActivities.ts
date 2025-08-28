@@ -78,6 +78,19 @@ export const useActivities = (id?: string) => {
         }
     })
 
+    const updateAttendance = useMutation({
+        mutationFn: async (id: string) => {
+            console.log('mutation id: ' + id)
+            await agent.post(`/activities/${id}/attend`)
+        },
+        onSuccess: async () => {
+            console.log('query id: ' + id)
+            await queryClient.invalidateQueries({
+                queryKey: ['activities', id]
+            })
+        }
+    })
+
     return {
         activities,
         isLoading,
@@ -85,6 +98,7 @@ export const useActivities = (id?: string) => {
         createActivity,
         deleteActivity,
         activity,
-        isLoadingActivity
+        isLoadingActivity,
+        updateAttendance
     }
 }
