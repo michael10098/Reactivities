@@ -16,7 +16,11 @@ export default function ActivityCard({ activity }: Props) {
     <Card elevation={3} sx={{ borderRadius: 3 }}>
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         <CardHeader
-          avatar={<Avatar sx={{ height: 80, width: 80 }} />}
+          avatar={<Avatar 
+            src={activity.hostImageUrl} 
+            sx={{ height: 80, width: 80 }} 
+            alt="iamge of host"
+          />}
           title={activity.title}
           titleTypographyProps={{
             fontWeight: 'bold',
@@ -24,7 +28,7 @@ export default function ActivityCard({ activity }: Props) {
           }}
           subheader={
             <>
-              Hosted by{' '} <Link to={`/profiles/?{activity.hostId}`}>
+              Hosted by{' '} <Link to={`/profiles/${activity.hostId}`}>
                 {activity.hostDisplayName}
               </Link>
             </>
