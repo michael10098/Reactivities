@@ -2,7 +2,7 @@ using System;
 
 namespace Application.Activities.DTOs;
 
-public class CommentDTO
+public class CommentDto
 {
     public string Id { get; set; }
     public required string Body { get; set; }
