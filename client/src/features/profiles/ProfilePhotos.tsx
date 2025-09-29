@@ -1,5 +1,5 @@
 import { Box, Button, Divider, ImageList, ImageListItem, Typography } from "@mui/material";
-import { useProfile } from "../../lib/hooks/userProfile";
+import { useProfile } from "../../lib/hooks/useProfile";
 import { useParams } from "react-router";
 import { useState } from "react";
 import PhotoUploadWidget from "../../app/shared/components/PhotoUploadWidget";

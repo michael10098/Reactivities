@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { editProfileSchema, type EditProfileSchema } from "../../lib/schemas/editProfileSchema"
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useProfile } from "../../lib/hooks/userProfile.ts";
+import { useProfile } from "../../lib/hooks/useProfile.ts";
 import { useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import TextInput from "../../app/shared/components/TextInput.tsx";

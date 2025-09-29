@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { useParams } from "react-router";
-import { useProfile } from "../../lib/hooks/userProfile";
+import { useProfile } from "../../lib/hooks/useProfile";
 import { useState } from "react";
 import ProfileEdit from "./ProfileEdit";
 
