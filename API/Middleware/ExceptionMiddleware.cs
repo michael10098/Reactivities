@@ -3,7 +3,6 @@ using System.Text.Json;
 using Application.Core;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using SQLitePCL;
 
 namespace API.Middleware;
 

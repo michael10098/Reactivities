@@ -26,7 +26,7 @@ agent.interceptors.response.use(
         return response;
     },
     async error => {
-        // await sleep(1000);
+        if (import.meta.env.DEV) await sleep(1000);
         store.uiStore.isIdle();
 
         const {status, data} = error.response;
