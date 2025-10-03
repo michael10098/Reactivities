@@ -11,7 +11,7 @@ export default function DateTimeInput<T extends FieldValues>(props: Props<T>) {
             {...props}
             value={field.value ? new Date(field.value) : null}
             onChange={value => {
-                field.onChange(new Date(value))
+                field.onChange(value)
             }}
             sx={{width: "100%"}}
             slotProps={{
