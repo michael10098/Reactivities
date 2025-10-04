@@ -1,4 +1,4 @@
-import { Paper, Typography, List, ListItem, Chip, ListItemAvatar, Avatar, ListItemText, Grid } from "@mui/material";
+import { Paper, Typography, List, ListItem, Chip, ListItemAvatar, Avatar, ListItemText, Grid} from "@mui/material";
 
 type Props = {
   activity: Activity
@@ -25,7 +25,7 @@ export default function ActivityDetailsSidebar({ activity }: Props) {
           <Grid key={attendee.id} container alignItems="center">
             <Grid size={8}>
               <List sx={{ display: 'flex', flexDirection: 'column' }}>
-                <ListItem>
+                <ListItem component="a" href={`/profiles/${attendee.id}`}>
                   <ListItemAvatar>
                     <Avatar
                       variant="rounded"
