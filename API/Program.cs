@@ -16,6 +16,7 @@ using Infrastructure.Security;
 using Infrastructure.Photos;
 using API.SignalR;
 using Resend;
+using Infrastructure.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,7 @@ builder.Services.Configure<ResendClientOptions>(opt =>
     opt.ApiToken = builder.Configuration["Resend:ApiToken"]!;
 });
 builder.Services.AddTransient<IResend, ResendClient>();
+builder.Services.AddTransient<IEmailSender<User>, EmailSender>();
 
 builder.Services.AddScoped<IUserAccessor, UserAccessor>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
