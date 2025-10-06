@@ -17,6 +17,7 @@ using Infrastructure.Photos;
 using API.SignalR;
 using Resend;
 using Infrastructure.Email;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,8 +44,13 @@ builder.Services.Configure<ResendClientOptions>(opt =>
 {
     opt.ApiToken = builder.Configuration["Resend:ApiToken"]!;
 });
-builder.Services.AddTransient<IResend, ResendClient>();
-builder.Services.AddTransient<IEmailSender<User>, EmailSender>();
+builder.Services.AddHttpClient<IResend, ResendClient>();
+builder.Services.AddTransient<IEmailSender<User>>(provider =>
+{
+    var scope = provider.CreateScope();
+    var resendOptions = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<ResendClientOptions>>().Value;
+    return new EmailSender(resendOptions);
+});
 
 builder.Services.AddScoped<IUserAccessor, UserAccessor>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();

@@ -1,11 +1,12 @@
 using System;
 using Domain;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Resend;
 
 namespace Infrastructure.Email;
 
-public class EmailSender(IResend resend) : IEmailSender<User>
+public class EmailSender(ResendClientOptions resend) : IEmailSender<User>
 {
     public async Task SendConfirmationLinkAsync(User user, string email, string confirmationLink)
     {
