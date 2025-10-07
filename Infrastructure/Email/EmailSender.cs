@@ -6,7 +6,7 @@ using Resend;
 
 namespace Infrastructure.Email;
 
-public class EmailSender(ResendClientOptions resend) : IEmailSender<User>
+public class EmailSender(ResendClient resend, ResendClientOptions resendOptions) : IEmailSender<User>
 {
     public async Task SendConfirmationLinkAsync(User user, string email, string confirmationLink)
     {
@@ -42,7 +42,7 @@ public class EmailSender(ResendClientOptions resend) : IEmailSender<User>
 
         Console.WriteLine(message.HtmlBody);
 
-        // await resend.EmailSendAsync(message);
-        await Task.CompletedTask;
+        await resend.EmailSendAsync(message);
+        // await Task.CompletedTask;
     }
 }

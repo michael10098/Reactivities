@@ -48,8 +48,9 @@ builder.Services.AddHttpClient<IResend, ResendClient>();
 builder.Services.AddTransient<IEmailSender<User>>(provider =>
 {
     var scope = provider.CreateScope();
+    var resend = scope.ServiceProvider.GetRequiredService<ResendClient>();
     var resendOptions = scope.ServiceProvider.GetRequiredService<IOptionsSnapshot<ResendClientOptions>>().Value;
-    return new EmailSender(resendOptions);
+    return new EmailSender(resend, resendOptions);
 });
 
 builder.Services.AddScoped<IUserAccessor, UserAccessor>();
